@@ -471,4 +471,86 @@ main {
 }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 1024
+@media (max-width: 1024px) {
+    .portfolio-overlay h3 {
+        font-size: 48px;
+        left: 24px;
+    }
+    
+    .hero-title {
+        font-size: 70px;
+    }
+}
+
+@media (max-width: 840px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .portfolio-item {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .portfolio-info {
+        width: 100%;
+        padding: 26px;
+    }
+    
+    .portfolio-image {
+        min-height: 50vh;
+    }
+    
+    .portfolio-image img {
+        height: 50vh;
+    }
+    
+    .section-title {
+        font-size: 42px;
+    }
+    
+    .portfolio-overlay h3 {
+        font-size: 36px;
+        left: 20px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .portfolio-overlay h3 {
+        font-size: 28px;
+        left: 16px;
+        bottom: 18px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .nav-links a {
+        font-size: 13px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .services {
+        justify-content: center;
+    }
+}
