@@ -1,254 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MMVI — Digital products and strategies</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MMVI — Минималистичный портфолио (упрощённая версия)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Навигация -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="#" class="logo">
-                    <span class="logo-text">MMVI</span>
-                    <span class="logo-beta">BETA</span>
-                </a>
-                
-                <div class="nav-menu">
-                    <div class="nav-left">
-                        <a href="#work" class="nav-link">Work</a>
-                        <a href="#services" class="nav-link">Services</a>
-                        <a href="#about" class="nav-link">About</a>
-                    </div>
-                    
-                    <div class="nav-right">
-                        <a href="#contact" class="nav-link">Contact</a>
-                        <a href="#" class="nav-lang">EN</a>
-                    </div>
-                </div>
-                
-                <button class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a class="logo" href="#home"><span class="logo-mark">MMVI</span><span class="logo-text">MMVI</span></a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-eyebrow">
-                    <span class="eyebrow-text">DIGITAL PRODUCTS AND STRATEGIES</span>
-                    <div class="eyebrow-line"></div>
-                </div>
-                
-                <h1 class="hero-title">
-                    We create digital<br>
-                    <span class="highlight">products and strategies</span>
-                </h1>
-                
-                <div class="hero-subtitle">
-                    <p>Full-cycle agency: from strategy and design to development and launch.</p>
-                </div>
-                
-                <div class="hero-scroll">
-                    <span>Scroll</span>
-                    <div class="scroll-line"></div>
-                </div>
-            </div>
+      <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" role="navigation">
+        <ul class="nav-list">
+          <li><a href="#projects" class="nav-link">Проекты</a></li>
+          <li><a href="#showroom" class="nav-link">Шоурум</a></li>
+          <li><a href="#about" class="nav-link">О команде</a></li>
+          <li><a href="#contact" class="nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Материал. Дизайн. Контроль.</h1>
+        <p class="hero-sub">Мы работаем с натуральным камнем для частных и коммерческих проектов — от идеи до реализации.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+          <a href="#showroom" class="btn btn-outline">Посетить шоурум</a>
         </div>
-        
-        <div class="hero-background">
-            <div class="bg-element el1"></div>
-            <div class="bg-element el2"></div>
-            <div class="bg-element el3"></div>
-            <div class="bg-element el4"></div>
-        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="work" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Selected work</h2>
-                <a href="#" class="view-all">View all work →</a>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Проекты</h2>
+        <p class="section-subtitle">Подборка реализованных работ — от интерьеров до общественных пространств.</p>
+
+        <div class="projects-grid" aria-live="polite">
+          <!-- карточки: в data-* положена детальная информация для модалки -->
+          <article class="project-card" tabindex="0"
+                   data-title="Пентхаус, Москва"
+                   data-desc="Проект для частного интерьера: каменные поверхности, текстуры и тонкая отделка."
+                   data-img="images/p1.jpg">
+            <div class="project-media">
+              <img src="images/p1-thumb.jpg" alt="Пентхаус — миниатюра">
             </div>
-            
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <div class="image-wrapper">
-                            <img src="https://mmvi.pro/_next/image?url=%2Fimages%2Fwork%2Ffintech.jpg&w=1200&q=75" alt="Fintech" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-meta">
-                            <span class="project-category">Fintech</span>
-                            <span class="project-year">2023</span>
-                        </div>
-                        <h3 class="project-title">Digital banking platform</h3>
-                        <p class="project-description">Strategy, design and development of a mobile banking application</p>
-                    </div>
-                </a>
-                
-                <!-- Project 2 -->
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <div class="image-wrapper">
-                            <img src="https://mmvi.pro/_next/image?url=%2Fimages%2Fwork%2Fecommerce.jpg&w=1200&q=75" alt="E-commerce" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-meta">
-                            <span class="project-category">E-commerce</span>
-                            <span class="project-year">2023</span>
-                        </div>
-                        <h3 class="project-title">Online retail platform</h3>
-                        <p class="project-description">Development of an e-commerce platform with AI recommendations</p>
-                    </div>
-                </a>
-                
-                <!-- Project 3 -->
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <div class="image-wrapper">
-                            <img src="https://mmvi.pro/_next/image?url=%2Fimages%2Fwork%2Fhealthtech.jpg&w=1200&q=75" alt="Healthtech" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-meta">
-                            <span class="project-category">Healthtech</span>
-                            <span class="project-year">2022</span>
-                        </div>
-                        <h3 class="project-title">Telemedicine service</h3>
-                        <p class="project-description">Design and development of a platform for remote medical consultations</p>
-                    </div>
-                </a>
+            <div class="project-body">
+              <h3 class="project-title">Пентхаус, Москва</h3>
+              <p class="project-meta">Материал: Quarzite Patagonia · Бюро: SL Architects</p>
+              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
             </div>
+          </article>
+
+          <article class="project-card" tabindex="0"
+                   data-title="Hyatt Sochi"
+                   data-desc="Отельный проект с акцентом на долговечность и фактуру камня."
+                   data-img="images/p2.jpg">
+            <div class="project-media">
+              <img src="images/p2-thumb.jpg" alt="Hyatt Sochi — миниатюра">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Hyatt Sochi</h3>
+              <p class="project-meta">Материал: Eriba Blue · Локация: Сочи</p>
+              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0"
+                   data-title="Таунхаус"
+                   data-desc="Реставрация и новая отделка фасадов и интерьеров."
+                   data-img="images/p3.jpg">
+            <div class="project-media">
+              <img src="images/p3-thumb.jpg" alt="Таунхаус — миниатюра">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Таунхаус</h3>
+              <p class="project-meta">Материал: Pietra Grey · Архитектор: Irakli Zaria</p>
+              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
+            </div>
+          </article>
         </div>
+
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Services</h2>
-            </div>
-            
-            <div class="services-list">
-                <div class="service-item">
-                    <div class="service-number">01</div>
-                    <div class="service-content">
-                        <h3 class="service-title">Strategy</h3>
-                        <p class="service-description">Market research, competitor analysis, concept development, product planning</p>
-                    </div>
-                </div>
-                
-                <div class="service-item">
-                    <div class="service-number">02</div>
-                    <div class="service-content">
-                        <h3 class="service-title">Design</h3>
-                        <p class="service-description">UX/UI design, prototyping, branding, design systems</p>
-                    </div>
-                </div>
-                
-                <div class="service-item">
-                    <div class="service-number">03</div>
-                    <div class="service-content">
-                        <h3 class="service-title">Development</h3>
-                        <p class="service-description">Web development, mobile applications, integrations, technical support</p>
-                    </div>
-                </div>
-            </div>
+    <!-- SHOWROOM -->
+    <section id="showroom" class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">Шоурум</h2>
+        <p class="section-subtitle">Приглашаем в центр — образцы, консультации и встречи.</p>
+
+        <div class="showroom-block">
+          <div class="showroom-media">
+            <img src="images/showroom.jpg" alt="Шоурум">
+          </div>
+          <div class="showroom-info">
+            <p>Москва, Марксистская 20/1 · По записи</p>
+            <a href="https://t.me/" target="_blank" class="btn btn-outline">Написать нам</a>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About</h2>
-                    <p class="about-description">
-                        We are a team of experts in digital development, creating products that solve real business problems. 
-                        We work with companies from startups to corporations, helping them achieve goals through technology and design.
-                    </p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">7</div>
-                            <div class="stat-label">Years</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Industries</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-image">
-                    <div class="image-container">
-                        <img src="https://mmvi.pro/_next/image?url=%2Fimages%2Fabout.jpg&w=1200&q=75" alt="About MMVI" loading="lazy">
-                    </div>
-                </div>
-            </div>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container about-inner">
+        <h2 class="section-title">О команде</h2>
+        <div class="about-grid">
+          <p>Мы — команда закупщиков, инженеров и мастеров с многолетним опытом. Полный контроль цепочки: проектирование, производство, логистика и монтаж.</p>
+          <ul class="about-list">
+            <li>Проектирование</li>
+            <li>Собственное производство</li>
+            <li>Монтаж и сопровождение</li>
+          </ul>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Start a project</h2>
-                <p class="contact-subtitle">Let's discuss your task and suggest a solution</p>
-                
-                <a href="mailto:hello@mmvi.pro" class="contact-email">
-                    <span>hello@mmvi.pro</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+    <!-- CONTACT -->
+    <section id="contact" class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">Контакты</h2>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Офис</h3>
+            <p>Москва, Марксистская 20, стр.1</p>
+            <p><a href="tel:+74956707004">+7 (495) 670-70-04</a></p>
+            <p><a href="mailto:office@example.com">office@example.com</a></p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Связаться</h3>
+            <form id="contactForm" class="needs-validation" novalidate>
+              <label class="visually-hidden" for="name">Имя</label>
+              <input id="name" name="name" type="text" placeholder="Ваше имя" required data-error="Введите имя">
+
+              <label class="visually-hidden" for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="Email" required data-error="Введите корректный email">
+
+              <label class="visually-hidden" for="message">Сообщение</label>
+              <textarea id="message" name="message" rows="5" placeholder="Сообщение" required data-error="Напишите сообщение"></textarea>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+              </div>
+              <div id="formResult" class="form-result" aria-live="polite"></div>
+            </form>
+          </div>
         </div>
+
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-logo">MMVI</div>
-                    <div class="footer-copyright">© 2024 MMVI. All rights reserved.</div>
-                </div>
-                
-                <div class="footer-right">
-                    <div class="footer-links">
-                        <a href="https://t.me/mmvi_pro" target="_blank">Telegram</a>
-                        <a href="https://www.linkedin.com/company/mmvi-pro" target="_blank">LinkedIn</a>
-                        <a href="https://dribbble.com/mmvi" target="_blank">Dribbble</a>
-                        <a href="https://www.instagram.com/mmvi.pro" target="_blank">Instagram</a>
-                    </div>
-                    
-                    <div class="footer-address">
-                        <p>Moscow, Russia</p>
-                        <p>Remote worldwide</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  </main>
 
-    <script src="script.js"></script>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="copyright">© MMVI — 2025</div>
+      <div class="footer-links"><a href="#projects">Проекты</a> · <a href="#contact">Контакты</a></div>
+    </div>
+  </footer>
+
+  <!-- PROJECT MODAL -->
+  <div id="projectModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel" role="document">
+      <button class="modal-close" aria-label="Закрыть">×</button>
+      <div class="modal-inner">
+        <img id="modalImg" src="" alt="" class="modal-img">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
