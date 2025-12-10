@@ -1,154 +1,142 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (navMenu) {
-                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            }
-        });
+// Простой, надёжный скрипт: меню, плавный скролл, модалка и валидация формы.
+
+document.addEventListener('DOMContentLoaded', () => {
+  // helpers
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+
+  /* MOBILE NAV */
+  const navToggle = $('.nav-toggle');
+  const nav = $('.nav');
+  const navList = $('.nav-list');
+
+  function closeNav() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function openNav() {
+    navToggle.setAttribute('aria-expanded', 'true');
+    nav.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      if (nav && nav.classList.contains('active')) closeNav();
+      else openNav();
+    });
+  }
+
+  // close when click anchor
+  $$('.nav-link').forEach(a => a.addEventListener('click', () => closeNav()));
+
+  /* SMOOTH SCROLL (учёт фиксированной шапки) */
+  const header = $('.header');
+  const headerHeight = () => header ? header.offsetHeight : 0;
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight() - 12;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+  });
+
+  /* PROJECT MODAL */
+  const modal = $('#projectModal');
+  const modalImg = $('#modalImg');
+  const modalTitle = $('#modalTitle');
+  const modalDesc = $('#modalDesc');
+  const modalClose = modal ? modal.querySelector('.modal-close') : null;
+
+  function openProject(card) {
+    const img = card.dataset.img || '';
+    const title = card.dataset.title || '';
+    const desc = card.dataset.desc || '';
+    if (modalImg) modalImg.src = img;
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDesc) modalDesc.textContent = desc;
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (menuToggle && menuToggle.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    if (navMenu) {
-                        navMenu.style.display = 'none';
-                    }
-                }
-            }
-        });
-    });
-    
-    // Parallax effect for background elements
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const elements = document.querySelectorAll('.bg-element');
-        
-        elements.forEach((el, index) => {
-            const speed = 0.2 + (index * 0.1);
-            const yPos = -(scrolled * speed);
-            el.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
-        });
-    });
-    
-    // Lazy load images
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
+  }
+  function closeProject() {
+    if (modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (modalImg) modalImg.src = '';
     }
-    
-    // Add data-src attribute for lazy loading
-    images.forEach(img => {
-        img.dataset.src = img.src;
-        img.src = '';
+  }
+
+  $$('.project-card .link-more').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const card = e.target.closest('.project-card');
+      openProject(card);
     });
-    
-    // Animation on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for fade-in animation
-    document.querySelectorAll('.project-card, .service-item, .about-content').forEach(el => {
-        fadeObserver.observe(el);
+  });
+  // also open when pressing Enter on card
+  $$('.project-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter') openProject(card);
     });
-    
-    // Add CSS for fade-in animation
-    const style = document.createElement('style');
-    style.textContent = `
-        .project-card,
-        .service-item,
-        .about-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .project-card.fade-in,
-        .service-item.fade-in,
-        .about-content.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .project-card:nth-child(1) { transition-delay: 0.1s; }
-        .project-card:nth-child(2) { transition-delay: 0.2s; }
-        .project-card:nth-child(3) { transition-delay: 0.3s; }
-        
-        .service-item:nth-child(1) { transition-delay: 0.1s; }
-        .service-item:nth-child(2) { transition-delay: 0.2s; }
-        .service-item:nth-child(3) { transition-delay: 0.3s; }
-    `;
-    document.head.appendChild(style);
-    
-    // Mouse move parallax for hero
-    const hero = document.querySelector('.hero');
-    
-    if (hero) {
-        hero.addEventListener('mousemove', function(e) {
-            const width = this.offsetWidth;
-            const height = this.offsetHeight;
-            const mouseX = e.offsetX;
-            const mouseY = e.offsetY;
-            
-            const elements = this.querySelectorAll('.bg-element');
-            
-            elements.forEach((el, index) => {
-                const moveX = (mouseX / width - 0.5) * (20 + index * 10);
-                const moveY = (mouseY / height - 0.5) * (20 + index * 10);
-                
-                el.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.5}deg)`;
-            });
-        });
-        
-        // Reset on mouse leave
-        hero.addEventListener('mouseleave', function() {
-            const elements = this.querySelectorAll('.bg-element');
-            elements.forEach(el => {
-                el.style.transform = 'translate(0, 0) rotate(0deg)';
-            });
-        });
-    }
+  });
+
+  if (modalClose) modalClose.addEventListener('click', closeProject);
+  if (modal) modal.addEventListener('click', e => { if (e.target === modal) closeProject(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
+
+  /* FORM VALIDATION */
+  const contactForm = $('#contactForm');
+  const resultBox = $('#formResult');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // clear previous
+      resultBox.textContent = '';
+      const name = contactForm.querySelector('#name');
+      const email = contactForm.querySelector('#email');
+      const message = contactForm.querySelector('#message');
+      let ok = true;
+
+      [name, email, message].forEach(el => el.style.outline = 'none');
+
+      if (!name.value.trim()) { name.style.outline = '2px solid #f3d4d4'; ok = false; }
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.value.trim() || !emailRe.test(email.value.trim())) { email.style.outline = '2px solid #f3d4d4'; ok = false; }
+      if (!message.value.trim()) { message.style.outline = '2px solid #f3d4d4'; ok = false; }
+
+      if (!ok) {
+        resultBox.textContent = 'Пожалуйста, заполните обязательные поля корректно.';
+        return;
+      }
+
+      // fake send (replace with fetch to real endpoint)
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const prev = btn.textContent;
+      btn.textContent = 'Отправка...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = prev;
+        btn.disabled = false;
+        resultBox.textContent = 'Спасибо — сообщение отправлено.';
+        contactForm.reset();
+      }, 800);
+    });
+  }
+
+  /* small enhancement: show header shadow on scroll */
+  window.addEventListener('scroll', () => {
+    if (!header) return;
+    if (window.scrollY > 10) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }, { passive: true });
 });
