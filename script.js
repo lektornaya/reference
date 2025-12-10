@@ -1,5 +1,3 @@
-// Простой, надёжный скрипт: меню, плавный скролл, модалка и валидация формы.
-
 document.addEventListener('DOMContentLoaded', () => {
   // helpers
   const $ = s => document.querySelector(s);
@@ -133,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* small enhancement: show header shadow on scroll */
   window.addEventListener('scroll', () => {
     if (!header) return;
     if (window.scrollY > 10) header.classList.add('scrolled');
