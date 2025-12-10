@@ -1,193 +1,162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MMVI — Минималистичный портфолио (упрощённая версия)</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMVI - Каменный партнер</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <header class="header" role="banner">
-    <div class="container header-inner">
-      <a class="logo" href="#home"><span class="logo-mark">MMVI</span><span class="logo-text">MMVI</span></a>
-
-      <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="nav" role="navigation">
-        <ul class="nav-list">
-          <li><a href="#projects" class="nav-link">Проекты</a></li>
-          <li><a href="#showroom" class="nav-link">Шоурум</a></li>
-          <li><a href="#about" class="nav-link">О команде</a></li>
-          <li><a href="#contact" class="nav-link">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <h1 class="hero-title">Материал. Дизайн. Контроль.</h1>
-        <p class="hero-sub">Мы работаем с натуральным камнем для частных и коммерческих проектов — от идеи до реализации.</p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
-          <a href="#showroom" class="btn btn-outline">Посетить шоурум</a>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="https://static.tildacdn.com/tild6538-6465-4063-b437-616330626237/Group_121.svg" alt="MMVI Logo">
+                </div>
+                <div class="nav-links">
+                    <a href="/">Главная</a>
+                    <a href="/projects">Проекты</a>
+                    <a href="#showroom">Шоурум</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="https://t.me/MMVI_Italia" target="_blank" class="contact-btn">Связаться</a>
+                </div>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-      </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ваш каменный партнёр,<br><span class="light">готовый к любым вызовам</span></h1>
+            <p class="hero-subtitle">Границы для нас — не преграда. В нашем портфолио есть проекты не только из России: мы работали с камнем для частных домов в Лондоне, Флоренции, Женеве и на Лазурном берегу Франции</p>
+        </div>
+        <div class="hero-image">
+            <img src="https://static.tildacdn.com/tild3736-6561-4366-b265-613263313736/II_1.jpg" alt="Каменная архитектура">
+        </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Проекты</h2>
-        <p class="section-subtitle">Подборка реализованных работ — от интерьеров до общественных пространств.</p>
-
-        <div class="projects-grid" aria-live="polite">
-          <!-- карточки: в data-* положена детальная информация для модалки -->
-          <article class="project-card" tabindex="0"
-                   data-title="Пентхаус, Москва"
-                   data-desc="Проект для частного интерьера: каменные поверхности, текстуры и тонкая отделка."
-                   data-img="images/p1.jpg">
-            <div class="project-media">
-              <img src="images/p1-thumb.jpg" alt="Пентхаус — миниатюра">
+    <!-- Преимущества -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Давно в индустрии</h3>
+                    <p>ВОТ УЖЕ ТРИ ПОКОЛЕНИЯ РАБОТАЕМ С НАТУРАЛЬНЫМ КАМНЕМ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Проектирование</h3>
+                    <p>ГОВОРИМ НА ОДНОМ ЯЗЫКЕ С АРХИТЕКТОРАМИ И ДИЗАЙНЕРАМИ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Работаем по всему миру</h3>
+                    <p>Есть представительства в Италии, России, а также агенты в Китае и Турции</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Собственное производство</h3>
+                    <p>Проектно-технический отдел позволяет реализовывать задачи любой сложности</p>
+                </div>
             </div>
-            <div class="project-body">
-              <h3 class="project-title">Пентхаус, Москва</h3>
-              <p class="project-meta">Материал: Quarzite Patagonia · Бюро: SL Architects</p>
-              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0"
-                   data-title="Hyatt Sochi"
-                   data-desc="Отельный проект с акцентом на долговечность и фактуру камня."
-                   data-img="images/p2.jpg">
-            <div class="project-media">
-              <img src="images/p2-thumb.jpg" alt="Hyatt Sochi — миниатюра">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Hyatt Sochi</h3>
-              <p class="project-meta">Материал: Eriba Blue · Локация: Сочи</p>
-              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0"
-                   data-title="Таунхаус"
-                   data-desc="Реставрация и новая отделка фасадов и интерьеров."
-                   data-img="images/p3.jpg">
-            <div class="project-media">
-              <img src="images/p3-thumb.jpg" alt="Таунхаус — миниатюра">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Таунхаус</h3>
-              <p class="project-meta">Материал: Pietra Grey · Архитектор: Irakli Zaria</p>
-              <button class="link-more" aria-haspopup="dialog">Подробнее</button>
-            </div>
-          </article>
         </div>
-
-      </div>
     </section>
 
-    <!-- SHOWROOM -->
-    <section id="showroom" class="section section-muted">
-      <div class="container">
-        <h2 class="section-title">Шоурум</h2>
-        <p class="section-subtitle">Приглашаем в центр — образцы, консультации и встречи.</p>
-
-        <div class="showroom-block">
-          <div class="showroom-media">
-            <img src="images/showroom.jpg" alt="Шоурум">
-          </div>
-          <div class="showroom-info">
-            <p>Москва, Марксистская 20/1 · По записи</p>
-            <a href="https://t.me/" target="_blank" class="btn btn-outline">Написать нам</a>
-          </div>
+    <!-- Возможности -->
+    <section class="capabilities">
+        <div class="container">
+            <h2 class="section-title">Можем всё</h2>
+            <p class="section-subtitle">В нашем портфолио есть проекты от квартир и ресторанов до общественных пространств и офисов международных компаний</p>
         </div>
-      </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container about-inner">
-        <h2 class="section-title">О команде</h2>
-        <div class="about-grid">
-          <p>Мы — команда закупщиков, инженеров и мастеров с многолетним опытом. Полный контроль цепочки: проектирование, производство, логистика и монтаж.</p>
-          <ul class="about-list">
-            <li>Проектирование</li>
-            <li>Собственное производство</li>
-            <li>Монтаж и сопровождение</li>
-          </ul>
+    <!-- Портфолио -->
+    <section class="portfolio">
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <img src="https://static.tildacdn.com/tild6232-3330-4435-b137-313665386533/_web_54_of_121.jpg" alt="Пентхаусы">
+                <div class="portfolio-overlay">
+                    <h3>Пентхаусы</h3>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <p>БЮРО: SL Architects<br>ЛОКАЦИЯ: Москва<br>МАТЕРИАЛЫ: Quarzite Patagonia</p>
+                <a href="/projects/pentkhaus-na-mosfilmovskoy" class="btn">Подробнее</a>
+            </div>
         </div>
-      </div>
+        
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <img src="https://static.tildacdn.com/tild3535-3465-4539-b531-333262343431/Rectangle_119.jpg" alt="Квартиры">
+                <div class="portfolio-overlay">
+                    <h3>Квартиры</h3>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <p>Архитектор: Борис Уборевич-Боровский<br>Локация: Москва<br>Материалы: Quarzite Patagonia, Quarzite Rosa</p>
+                <a href="/projects/kvartira-na-ulitse-polyanka" class="btn">Подробнее</a>
+            </div>
+        </div>
+        
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <img src="https://static.tildacdn.com/tild3238-3638-4363-a666-396463643734/Rectangle_118-1.jpg" alt="Отели и гостиницы">
+                <div class="portfolio-overlay">
+                    <h3>Отели и гостиницы</h3>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <p>HYATT HOTEL SOCHI<br>БЮРО: SL ARCHITECTS<br>ЛОКАЦИЯ: СОЧИ<br>МАТЕРИАЛЫ: ERIBA BLUE MOCA CREMA</p>
+                <a href="/projects/hyatt-hotel-sochi" class="btn">Подробнее</a>
+            </div>
+        </div>
+        
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <img src="https://static.tildacdn.com/tild3364-3034-4534-b238-663832383131/Rectangle_119-1.jpg" alt="Хамамы и бассейны">
+                <div class="portfolio-overlay">
+                    <h3>Хамамы и бассейны</h3>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <p>ДИЗАЙНЕР: ЕВГЕНИЯ ТУКТАРОВА<br>ЛОКАЦИЯ: МОСКВА<br>МАТЕРИАЛЫ: QUARZITE CRISTALLO, FIOR DI BOSCO, NERO MARQUINO, THASSOS, MAGMA BLACK, VOLAKAS</p>
+                <a href="/projects/dom-v-poselke-truvil" class="btn">Подробнее</a>
+            </div>
+        </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section section-muted">
-      <div class="container">
-        <h2 class="section-title">Контакты</h2>
-
-        <div class="contact-grid">
-          <div class="contact-card">
-            <h3>Офис</h3>
-            <p>Москва, Марксистская 20, стр.1</p>
-            <p><a href="tel:+74956707004">+7 (495) 670-70-04</a></p>
-            <p><a href="mailto:office@example.com">office@example.com</a></p>
-          </div>
-
-          <div class="contact-card">
-            <h3>Связаться</h3>
-            <form id="contactForm" class="needs-validation" novalidate>
-              <label class="visually-hidden" for="name">Имя</label>
-              <input id="name" name="name" type="text" placeholder="Ваше имя" required data-error="Введите имя">
-
-              <label class="visually-hidden" for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="Email" required data-error="Введите корректный email">
-
-              <label class="visually-hidden" for="message">Сообщение</label>
-              <textarea id="message" name="message" rows="5" placeholder="Сообщение" required data-error="Напишите сообщение"></textarea>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Отправить</button>
-              </div>
-              <div id="formResult" class="form-result" aria-live="polite"></div>
-            </form>
-          </div>
+    <!-- Футер -->
+    <footer class="footer" id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://static.tildacdn.com/tild6538-6465-4063-b437-616330626237/Group_121.svg" alt="MMVI Logo">
+                    <p>MMVI — это команда страстных специалистов</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <a href="https://t.me/MMVI_Italia" target="_blank" class="telegram-link">
+                        <i class="fab fa-telegram"></i> Написать в Telegram
+                    </a>
+                </div>
+            </div>
         </div>
+    </footer>
 
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="copyright">© MMVI — 2025</div>
-      <div class="footer-links"><a href="#projects">Проекты</a> · <a href="#contact">Контакты</a></div>
-    </div>
-  </footer>
-
-  <!-- PROJECT MODAL -->
-  <div id="projectModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-panel" role="document">
-      <button class="modal-close" aria-label="Закрыть">×</button>
-      <div class="modal-inner">
-        <img id="modalImg" src="" alt="" class="modal-img">
-        <h3 id="modalTitle"></h3>
-        <p id="modalDesc"></p>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
