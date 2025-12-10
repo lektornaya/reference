@@ -1,12 +1,9 @@
-/* Упрощённый, читабельный стиль — акценты, сетки, читабельность */
-
-/* Reset */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root{
   --bg: #ffffff;
   --muted: #f6f6f6;
   --ink: #111214;
-  --accent: #0f4c81; /* темно-синий акцент */
+  --accent: #0f4c81;
   --soft: #6f7380;
   --radius: 10px;
   --ff-heading: "Playfair Display", serif;
