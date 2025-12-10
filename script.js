@@ -1,26 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Мобильное меню
+    // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navMenu = document.querySelector('.nav-menu');
     
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('mobile-open');
-            menuToggle.classList.toggle('active');
-            
-            // Анимация иконки меню
-            const spans = menuToggle.querySelectorAll('span');
-            if (navLinks.classList.contains('mobile-open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                spans[1].style.transform = 'rotate(-45deg) translate(1px, -1px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.transform = 'none';
+            this.classList.toggle('active');
+            if (navMenu) {
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
             }
         });
     }
     
-    // Плавная прокрутка
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -30,125 +22,133 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Закрываем мобильное меню, если открыто
-                if (navLinks && navLinks.classList.contains('mobile-open')) {
-                    navLinks.classList.remove('mobile-open');
-                    menuToggle.classList.remove('active');
-                }
-                
-                // Прокрутка с учетом высоты навигации
                 const navHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navHeight - 20;
+                const targetPosition = targetElement.offsetTop - navHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+                
+                // Close mobile menu if open
+                if (menuToggle && menuToggle.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    if (navMenu) {
+                        navMenu.style.display = 'none';
+                    }
+                }
             }
         });
     });
     
-    // Анимация появления элементов при скролле
+    // Parallax effect for background elements
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const elements = document.querySelectorAll('.bg-element');
+        
+        elements.forEach((el, index) => {
+            const speed = 0.2 + (index * 0.1);
+            const yPos = -(scrolled * speed);
+            el.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+        });
+    });
+    
+    // Lazy load images
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+    
+    // Add data-src attribute for lazy loading
+    images.forEach(img => {
+        img.dataset.src = img.src;
+        img.src = '';
+    });
+    
+    // Animation on scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
     
-    const observer = new IntersectionObserver(function(entries) {
+    const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
+                entry.target.classList.add('fade-in');
             }
         });
     }, observerOptions);
     
-    // Наблюдаем за секциями для анимации
-    document.querySelectorAll('.service-card, .portfolio-card, .step, .about-text, .contact-form').forEach(el => {
-        observer.observe(el);
+    // Observe elements for fade-in animation
+    document.querySelectorAll('.project-card, .service-item, .about-content').forEach(el => {
+        fadeObserver.observe(el);
     });
     
-    // Форма обратной связи
-    const contactForm = document.getElementById('projectForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Простая валидация
-            const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    input.style.borderColor = '#ff4444';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
-            
-            if (isValid) {
-                const submitBtn = contactForm.querySelector('.submit-btn');
-                const originalText = submitBtn.querySelector('span').textContent;
-                
-                // Симуляция отправки
-                submitBtn.querySelector('span').textContent = 'Отправка...';
-                submitBtn.disabled = true;
-                
-                setTimeout(() => {
-                    alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-                    contactForm.reset();
-                    submitBtn.querySelector('span').textContent = originalText;
-                    submitBtn.disabled = false;
-                }, 1500);
-            } else {
-                alert('Пожалуйста, заполните все обязательные поля');
-            }
-        });
-    }
-    
-    // Параллакс эффект для фона
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const circles = document.querySelectorAll('.bg-circle');
-        
-        circles.forEach((circle, index) => {
-            const speed = 0.5 + (index * 0.1);
-            const yPos = -(scrolled * speed);
-            circle.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
-        });
-    });
-    
-    // Добавляем CSS для анимации появления
+    // Add CSS for fade-in animation
     const style = document.createElement('style');
     style.textContent = `
-        .service-card,
-        .portfolio-card,
-        .step,
-        .about-text,
-        .contact-form {
+        .project-card,
+        .service-item,
+        .about-content {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
-        .service-card.animated,
-        .portfolio-card.animated,
-        .step.animated,
-        .about-text.animated,
-        .contact-form.animated {
+        .project-card.fade-in,
+        .service-item.fade-in,
+        .about-content.fade-in {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .service-card:nth-child(1) { transition-delay: 0.1s; }
-        .service-card:nth-child(2) { transition-delay: 0.2s; }
-        .service-card:nth-child(3) { transition-delay: 0.3s; }
+        .project-card:nth-child(1) { transition-delay: 0.1s; }
+        .project-card:nth-child(2) { transition-delay: 0.2s; }
+        .project-card:nth-child(3) { transition-delay: 0.3s; }
         
-        .step:nth-child(1) { transition-delay: 0.1s; }
-        .step:nth-child(2) { transition-delay: 0.2s; }
-        .step:nth-child(3) { transition-delay: 0.3s; }
-        .step:nth-child(4) { transition-delay: 0.4s; }
-        .step:nth-child(5) { transition-delay: 0.5s; }
+        .service-item:nth-child(1) { transition-delay: 0.1s; }
+        .service-item:nth-child(2) { transition-delay: 0.2s; }
+        .service-item:nth-child(3) { transition-delay: 0.3s; }
     `;
     document.head.appendChild(style);
+    
+    // Mouse move parallax for hero
+    const hero = document.querySelector('.hero');
+    
+    if (hero) {
+        hero.addEventListener('mousemove', function(e) {
+            const width = this.offsetWidth;
+            const height = this.offsetHeight;
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+            
+            const elements = this.querySelectorAll('.bg-element');
+            
+            elements.forEach((el, index) => {
+                const moveX = (mouseX / width - 0.5) * (20 + index * 10);
+                const moveY = (mouseY / height - 0.5) * (20 + index * 10);
+                
+                el.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.5}deg)`;
+            });
+        });
+        
+        // Reset on mouse leave
+        hero.addEventListener('mouseleave', function() {
+            const elements = this.querySelectorAll('.bg-element');
+            elements.forEach(el => {
+                el.style.transform = 'translate(0, 0) rotate(0deg)';
+            });
+        });
+    }
 });
