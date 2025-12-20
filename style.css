@@ -1,4 +1,3 @@
-/* ========== ОСНОВНЫЕ ИСПРАВЛЕНИЯ ========== */
 :root {
     --primary-color: #005439;
     --secondary-color: #003d29;
@@ -24,6 +23,11 @@ html, body {
     position: relative;
 }
 
+/* Фиксируем масштаб на 100% */
+html {
+    font-size: 100%;
+}
+
 body {
     font-family: 'CoFo', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     color: var(--text-color);
@@ -33,20 +37,24 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-x: hidden; /* Дополнительная страховка */
 }
 
-/* Контейнер */
+/* Контейнер - исправляем для мобильных */
 .container {
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
     padding: 0 40px;
+    position: relative;
 }
 
 /* offset for fixed header */
 main { 
     padding-top: 86px; 
     width: 100%;
+    overflow-x: hidden; /* Предотвращаем скролл внутри main */
 }
 
 /* ========== HEADER ========== */
@@ -66,17 +74,21 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .logo img {
     height: 34px;
+    width: auto; /* Важно для предотвращения растяжения */
     display: block;
+    max-width: 100%;
 }
 
 .nav-links {
     display: flex;
     gap: 24px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -87,6 +99,7 @@ main {
     letter-spacing: .5px;
     transition: color .18s;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -104,6 +117,7 @@ main {
     border: none;
     cursor: pointer;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    white-space: nowrap;
 }
 
 .menu-toggle {
@@ -121,6 +135,7 @@ main {
     background: #fff;
     padding: 80px 0;
     width: 100%;
+    overflow: hidden; /* Предотвращаем выход элементов */
 }
 
 .features-grid {
@@ -136,6 +151,7 @@ main {
     border-radius: 10px;
     text-align: center;
     transition: transform .28s, box-shadow .28s;
+    width: 100%;
 }
 
 .feature-card:hover {
@@ -153,6 +169,7 @@ main {
     font-size: 16px;
     margin-bottom: 8px;
     font-weight: 500;
+    word-wrap: break-word;
 }
 
 .feature-card p {
@@ -161,6 +178,7 @@ main {
     line-height: 1.4;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    word-wrap: break-word;
 }
 
 /* ========== CAPABILITIES ========== */
@@ -169,6 +187,7 @@ main {
     text-align: center;
     background: #f2f1f0;
     width: 100%;
+    overflow: hidden;
 }
 
 .section-title {
@@ -177,6 +196,8 @@ main {
     letter-spacing: -2px;
     margin-bottom: 10px;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
+    width: 100%;
 }
 
 .section-subtitle {
@@ -185,12 +206,16 @@ main {
     color: #666;
     font-size: 15px;
     line-height: 1.6;
+    width: 100%;
+    padding: 0 20px; /* Добавляем отступы для мобильных */
+    box-sizing: border-box;
 }
 
 /* ========== ABOUT ========== */
 .about {
     padding: 80px 0;
     width: 100%;
+    overflow: hidden;
 }
 
 .about h2 {
@@ -198,6 +223,7 @@ main {
     font-weight: 300;
     margin-bottom: 18px;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
 }
 
 .services {
@@ -205,6 +231,7 @@ main {
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 12px;
+    width: 100%;
 }
 
 .service {
@@ -215,6 +242,8 @@ main {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 /* ========== PORTFOLIO ========== */
@@ -222,6 +251,7 @@ main {
     padding: 0;
     background: #fff;
     width: 100%;
+    overflow: hidden;
 }
 
 .portfolio-item {
@@ -241,6 +271,7 @@ main {
     position: relative;
     min-height: 60vh;
     overflow: hidden;
+    width: 100%;
 }
 
 .portfolio-image img {
@@ -249,6 +280,7 @@ main {
     object-fit: cover;
     display: block;
     transition: transform .6s;
+    max-width: 100%; /* Важно для изображений */
 }
 
 .portfolio-image:hover img {
@@ -261,6 +293,7 @@ main {
     bottom: 30px;
     color: #fff;
     text-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    max-width: calc(100% - 80px); /* Ограничиваем ширину */
 }
 
 .portfolio-overlay h3 {
@@ -269,6 +302,8 @@ main {
     letter-spacing: -6px;
     margin: 0;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
+    line-height: 1.1;
 }
 
 .portfolio-info {
@@ -279,6 +314,7 @@ main {
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 .portfolio-info p {
@@ -287,6 +323,7 @@ main {
     line-height: 1.4;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    word-wrap: break-word;
 }
 
 .btn {
@@ -302,6 +339,8 @@ main {
     transition: all .18s;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
     cursor: pointer;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 .btn:hover {
@@ -314,17 +353,20 @@ main {
     padding: 70px 0;
     background: #fff;
     width: 100%;
+    overflow: hidden;
 }
 
 .projects h2, .media h2 {
     margin-bottom: 18px;
     font-weight: 300;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
 }
 
 .swiper {
     width: 100%;
     padding: 12px 0;
+    overflow: hidden;
 }
 
 .swiper-slide {
@@ -335,12 +377,14 @@ main {
     background: #eee;
     border-radius: 10px;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    width: 100%;
 }
 
 /* ========== SHOWROOM ========== */
 .showroom {
     width: 100%;
     padding: 70px 0;
+    overflow: hidden;
 }
 
 #map {
@@ -357,6 +401,7 @@ main {
     padding: 42px 0 22px;
     width: 100%;
     margin-top: auto;
+    overflow: hidden;
 }
 
 .footer-content {
@@ -365,12 +410,15 @@ main {
     gap: 20px;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .footer-logo img {
     height: 34px;
     margin-bottom: 10px;
     display: block;
+    width: auto;
+    max-width: 100%;
 }
 
 .footer-logo p {
@@ -378,10 +426,13 @@ main {
     font-size: 14px;
     margin-bottom: 8px;
     line-height: 1.5;
+    word-wrap: break-word;
 }
 
 .footer-section {
     min-width: 180px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-section h3 {
@@ -390,17 +441,20 @@ main {
     font-size: 16px;
     font-weight: 500;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
 }
 
 .footer-section p {
     margin-bottom: 8px;
     line-height: 1.5;
+    word-wrap: break-word;
 }
 
 .footer-section a {
     color: #ccc;
     text-decoration: none;
     transition: color 0.3s;
+    word-wrap: break-word;
 }
 
 .footer-section a:hover {
@@ -414,6 +468,7 @@ main {
     color: #8fc4ff;
     text-decoration: none;
     margin-top: 10px;
+    word-wrap: break-word;
 }
 
 .telegram-link:hover {
@@ -446,6 +501,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    box-sizing: border-box;
 }
 
 .mobile-panel.open {
@@ -463,6 +519,7 @@ main {
     padding: 8px 6px;
     display: block;
     font-family: 'CoFo Sans', 'Segoe UI', sans-serif;
+    word-wrap: break-word;
 }
 
 .mobile-panel .panel .contact-btn {
@@ -480,6 +537,10 @@ main {
     .hero-title {
         font-size: 70px;
     }
+    
+    .portfolio-overlay {
+        max-width: calc(100% - 48px); /* Адаптируем под новый размер */
+    }
 }
 
 @media (max-width: 840px) {
@@ -489,6 +550,11 @@ main {
     
     .menu-toggle {
         display: block;
+    }
+    
+    .portfolio-overlay h3 {
+        font-size: 42px;
+        letter-spacing: -3px;
     }
 }
 
@@ -523,6 +589,20 @@ main {
         font-size: 36px;
         left: 20px;
         bottom: 20px;
+        letter-spacing: -2px;
+    }
+    
+    .portfolio-overlay {
+        max-width: calc(100% - 40px);
+    }
+    
+    /* Фиксируем для очень длинных слов */
+    .section-title, 
+    .portfolio-overlay h3,
+    .feature-card h3,
+    .feature-card p {
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 }
 
@@ -535,10 +615,12 @@ main {
         font-size: 28px;
         left: 16px;
         bottom: 18px;
+        letter-spacing: -1px;
     }
     
     .section-title {
         font-size: 32px;
+        letter-spacing: -1px;
     }
     
     .nav-links a {
@@ -552,5 +634,43 @@ main {
     
     .services {
         justify-content: center;
+    }
+    
+    .portfolio-overlay {
+        max-width: calc(100% - 32px);
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    /* Уменьшаем отступы для мобильных */
+    .features,
+    .capabilities,
+    .about,
+    .projects,
+    .media,
+    .showroom {
+        padding: 40px 0;
+    }
+}
+
+/* Дополнительные гарантии от горизонтального скролла */
+@media (max-width: 320px) {
+    html {
+        font-size: 95%; /* Слегка уменьшаем базовый размер шрифта */
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+}
+
+/* Для Safari и iOS */
+@supports (-webkit-touch-callout: none) {
+    html, body {
+        position: relative;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 }
